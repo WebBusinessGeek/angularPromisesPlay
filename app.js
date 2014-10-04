@@ -21,7 +21,7 @@ app.directive('promiseExample1', function(){
 
 				$timeout(function(){
 					deferred.resolve('I\'m from the very first button you clicked! - Look at the code if you dont believe me.');
-				}, 4500);
+				}, 4200);
 			}
 
 		},
