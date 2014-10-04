@@ -1,42 +1,10 @@
 var app = angular.module('app', []);
 
-/*
-app.controller('promiseExample2', function($scope, $q){
-
-	var defer = $q.defer();
-
-	defer.promise
-		.then(function(data){
-			alert('I was ' + data)
-			return 'second';
-		})
-		.then(function(data) {
-			alert('And I was ' + data)
-			return 'third';
-		})
-		.then(function(data){
-			alert('Sadly I was ' + data)
-			return 'fourth';
-		});
-
-	defer.resolve('first');
-})
-*/
-
-/*app.directive('promisedExample', function(){
-	return {
-		restrict: 'E',
-		template: '<button class="btn btn-primary">Click Me</button>'
-
-		
-	}
-});*/
-
 
 app.directive('promiseExample', function(){
 	return {
 		restrict: 'E', 
-		template: '<button class="btn btn-primary">Click me to see promises executed!</button>',
+		template: '<button class="btn btn-primary pull-right">Then click me 2nd!</button>',
 		controller: function($scope, $q){
 
 			$scope.promiseShow = function(){
@@ -44,24 +12,55 @@ app.directive('promiseExample', function(){
 
 				defer.promise
 					.then(function(data){
-						alert('I was ' + data)
-						return 'second';
+						alert('This alert came from the 2nd button you clicked' + data)
+						return 'right after';
 					})
 					.then(function(data) {
-						alert('And I was ' + data)
-						return 'third';
+						alert('And this 2nd alert box was executed ' + data + ' the last one.')
+						return 'wait';
 					})
 					.then(function(data){
-						alert('Sadly I was ' + data)
-						return 'fourth';
+						alert('Now ' + data + ' for it...')
 					});
 
-				defer.resolve('first');
+				defer.resolve('.');
 			}
 		},
 		link: function(scope, element, attrs){
 			element.bind('click', function(){
 				element.text(scope.promiseShow());
+			});
+		}
+	}
+})
+
+
+app.directive('quickTest', function(){
+	return {
+		restrict: 'E', 
+		template: '<button class="btn btn-primary">Click this 1st</button>',
+		controller: function($scope, $q, $timeout){
+			
+			$scope.tester = function(){
+				//new deferred object
+				var deferred = $q.defer();
+
+				//deferred promise object
+				var promise = deferred.promise;
+
+				promise.then(function(data){
+					alert(data);
+				});
+
+				$timeout(function(){
+					deferred.resolve('I\'m from the very first button you clicked! - Look at the code if you dont believe me.');
+				}, 4500);
+			}
+
+		},
+		link: function(scope, element, attrs){
+			element.bind('click', function(){
+				scope.tester();
 			});
 		}
 	}

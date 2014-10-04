@@ -10,6 +10,16 @@
     <link href="angular1.3-bootstrap3.2/bootstrap-twit/css/bootstrap.min.css" rel="stylesheet">
     <link href="angular1.3-bootstrap3.2/bootstrap-twit/css/bootstrap-theme.min.css" rel="stylesheet">
 
+    <style>
+
+    .seeMe{
+      font-weight: bold;
+      text-decoration: underline;
+      color: brown;
+
+    }
+
+    </style>
 
 
    
@@ -19,11 +29,15 @@
     <div class="container">
       
 
-      <h1>Hello, world!</h1>
+      <h1>Play with promises</h1>
 
-      <input type="text" ng-model="name">{{name}}
+      <h4 class="alert-danger">Read directions first!</h4>
+    
+      <h4>Directions: <p class="lead">Click the <b>left button 1st</b> - then <span class="seeMe">QUICKLY</span> -click the <b>right button 2nd</b> to see asynch tasks executed with promises</p></h4>
+      <quick-test></quick-test>
 
       <promise-example></promise-example>
+
 
 
     </div>
